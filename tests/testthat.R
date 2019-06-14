@@ -1,3 +1,3 @@
-library(maps)
+library(kart)
 
-testthat::test_check("maps")
+testthat::test_check("kart")
