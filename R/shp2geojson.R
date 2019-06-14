@@ -29,7 +29,7 @@ shp2geojson <- function(shapefile = "eldre",
   # Save geojson file to disk
   if (is.null(geojson)) {
     return(geojson_map)
-  } else {    
+  } else {
     geojsonio::geojson_write(geojson_map, file = paste0(geojson, ".geojson"))
   }
 

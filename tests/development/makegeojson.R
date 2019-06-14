@@ -1,5 +1,5 @@
 convert_all_shp <- function(){
-  
+
   name <- "barn"
   kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name))
   tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
@@ -23,9 +23,13 @@ convert_all_shp <- function(){
   tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
   eldre <- shinymap::utm33_to_leaflet(map = tmp)
   usethis::use_data(eldre, overwrite = TRUE)
-  
+
   name <- "nyfodt"
-  kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name), reduce_size = TRUE, amount = 0.5)
+  kart::shp2geojson(shapefile = name,
+                    folder = "shp",
+                    geojson = paste0("geojson/", name),
+                    reduce_size = TRUE,
+                    amount = 0.5)
   tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
   nyfodt <- shinymap::utm33_to_leaflet(map = tmp)
   usethis::use_data(nyfodt, overwrite = TRUE)

@@ -54,6 +54,6 @@ test_that("shp2geojson with geojson != NULL", {
       shapefile = "shapefile1",
       geojson = "tmp")
 
-  expect_equal_to_reference("tmp.geojson","data/shp2geojson.geojson")
+  expect_equal_to_reference("tmp.geojson", "data/shp2geojson.geojson")
   file.remove("tmp.geojson")
 })
