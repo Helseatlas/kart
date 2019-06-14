@@ -1,7 +1,7 @@
-Package: maps
+Package: kart
 Type: Package
 Title: Package containing maps used by Helseatlas
-Version: 4.0.0
+Version: 1.0.0
 Date: 2019-06-11
 Author: Arnfinn Hykkerud Steindal
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>
