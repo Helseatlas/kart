@@ -5,15 +5,19 @@ Version: 1.0.0
 Date: 2019-06-11
 Author: Arnfinn Hykkerud Steindal
 Maintainer: Arnfinn Hykkerud Steindal <arnfinn.steindal@gmail.com>
-Description: Containing maps in shapefile format, geojson format and as R objects
+Description:
+    This package is containing maps for helseatlas as R objects.
+    They are in sf format.
 License: file LICENSE
-Depends: R (>= 3.4.0)
+Depends: R (>= 3.5.0)
 LazyData: true
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 Imports:
   rgdal,
   geojsonio,
-  rmapshaper
+  rmapshaper,
+  sf,
+  sp
 Suggests: 
     testthat

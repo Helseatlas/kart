@@ -12,6 +12,20 @@ NULL
 #' @name barn
 NULL
 
+#' Map from the neonatal healthcare atlas
+#'
+#' @docType data
+#' @keywords map
+#' @name nyfodt
+NULL
+
+#' Map from the elderly healthcare atlas
+#'
+#' @docType data
+#' @keywords map
+#' @name eldre
+NULL
+
 #' Map from the COPD healthcare atlas
 #'
 #' @docType data
