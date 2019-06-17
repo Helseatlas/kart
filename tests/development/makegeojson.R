@@ -15,9 +15,16 @@ convert_all_shp <- function(){
   usethis::use_data(barn, overwrite = TRUE)
 
   name <- "kols"
+  # geojson
   kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name), reduce_size = FALSE)
-  tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
-  kols <- shinymap::utm33_to_leaflet(map = tmp)
+  # sf object
+  tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
+  tmp$OBJECTID <- NULL
+  tmp$Shape_Leng <- NULL
+  tmp$Shape_Area <- NULL
+  tmp$bohf_num <- tmp$Opptaksomr
+  tmp$Opptaksomr <- NULL
+  kols <- tmp
   usethis::use_data(kols, overwrite = TRUE)
 
   name <- "dagkir"
