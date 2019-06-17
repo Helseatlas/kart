@@ -57,13 +57,21 @@ convert_all_shp <- function(){
   usethis::use_data(eldre, overwrite = TRUE)
 
   name <- "nyfodt"
+  # geojson
   kart::shp2geojson(shapefile = name,
                     folder = "shp",
                     geojson = paste0("geojson/", name),
                     reduce_size = TRUE,
                     amount = 0.5)
-  tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
-  nyfodt <- shinymap::utm33_to_leaflet(map = tmp)
+  # sf object
+  tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
+  tmp$OBJECTID <- NULL
+  tmp$Shape_Leng <- NULL
+  tmp$Shape_Area <- NULL
+  tmp$BoOmrNavn <- NULL
+  tmp$bohf_num <- tmp$BoOmrID
+  tmp$BoOmrID <- NULL
+  nyfodt <- tmp
   usethis::use_data(nyfodt, overwrite = TRUE)
 
   name <- "dagkir2"
