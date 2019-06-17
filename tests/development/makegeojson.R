@@ -22,15 +22,24 @@ convert_all_shp <- function(){
   tmp$OBJECTID <- NULL
   tmp$Shape_Leng <- NULL
   tmp$Shape_Area <- NULL
-  tmp$bohf_num <- tmp$Opptaksomr
+  tmp$bohf_num <- as.integer(tmp$Opptaksomr)
   tmp$Opptaksomr <- NULL
   kols <- tmp
   usethis::use_data(kols, overwrite = TRUE)
 
   name <- "dagkir"
+  # geojson
   kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name))
-  tmp <- geojsonio::geojson_read(paste0("geojson/", name, ".geojson"), what = "sp")
-  dagkir <- shinymap::utm33_to_leaflet(map = tmp)
+  # sf object
+  tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
+  tmp$OBJECTID <- NULL
+  tmp$Shape_Leng <- NULL
+  tmp$Shape_Area <- NULL
+  tmp$bohf_str <- NULL
+  tmp$BoHF <- NULL
+  tmp$bohf_num <- tmp$BoHF_ny
+  tmp$BoHF_ny <- NULL
+  dagkir <- tmp
   usethis::use_data(dagkir, overwrite = TRUE)
 
   name <- "eldre"
