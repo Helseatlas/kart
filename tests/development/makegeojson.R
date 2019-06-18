@@ -11,7 +11,7 @@ convert_all_shp <- function(){
   tmp$bohf_str <- NULL
   tmp$bohf_num <- tmp$BoHF_ny2
   tmp$BoHF_ny2 <- NULL
-  barn <- tmp
+  barn <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(barn, overwrite = TRUE)
 
   name <- "kols"
@@ -24,6 +24,7 @@ convert_all_shp <- function(){
   tmp$Shape_Area <- NULL
   tmp$bohf_num <- as.integer(tmp$Opptaksomr)
   tmp$Opptaksomr <- NULL
+  sf::st_crs(tmp) <- 32633
   kols <- tmp
   usethis::use_data(kols, overwrite = TRUE)
 
@@ -39,7 +40,7 @@ convert_all_shp <- function(){
   tmp$BoHF <- NULL
   tmp$bohf_num <- tmp$BoHF_ny
   tmp$BoHF_ny <- NULL
-  dagkir <- tmp
+  dagkir <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(dagkir, overwrite = TRUE)
 
   name <- "eldre"
@@ -53,6 +54,7 @@ convert_all_shp <- function(){
   tmp$bohf_str <- NULL
   tmp$bohf_num <- as.integer(tmp$BoHF)
   tmp$BoHF <- NULL
+  sf::st_crs(tmp) <- 32633
   eldre <- tmp
   usethis::use_data(eldre, overwrite = TRUE)
 
@@ -86,12 +88,12 @@ convert_all_shp <- function(){
   tmp$Shape_Area <- NULL
   tmp$bohf_num <- as.integer(tmp$BoHF_num)
   tmp$BoHF_num <- NULL
-  dagkir2 <- tmp
+  dagkir2 <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(dagkir2, overwrite = TRUE)
 
-  fodsel <- tmp
+  fodsel <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(fodsel, overwrite = TRUE)
 
-  gyn <- tmp
+  gyn <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(gyn, overwrite = TRUE)
 }
