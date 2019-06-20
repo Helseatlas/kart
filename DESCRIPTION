@@ -14,9 +14,8 @@ LazyData: true
 RoxygenNote: 6.1.1
 Encoding: UTF-8
 Imports:
-  rgdal,
+  geojsonsf,
   geojsonio,
-  rmapshaper,
   sf,
   sp
 Suggests: 
