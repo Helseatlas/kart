@@ -48,11 +48,11 @@ convert_all_shp <- function(){
   kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name), reduce_size = FALSE)
   # sf object
   tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
-  tmp$OBJECTID <- NULL
   tmp$Shape_Leng <- NULL
   tmp$Shape_Area <- NULL
   tmp$bohf_str <- NULL
-  tmp$bohf_num <- as.integer(tmp$BoHF)
+  tmp$bohf_num <- as.integer(tmp$OBJECTID)
+  tmp$OBJECTID <- NULL
   tmp$BoHF <- NULL
   sf::st_crs(tmp) <- 32633
   eldre <- tmp
@@ -82,11 +82,11 @@ convert_all_shp <- function(){
   # sf object
   tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
   tmp$OBJECTID <- NULL
-  tmp$OBJECTID_1 <- NULL
   tmp$Shape_Leng <- NULL
   tmp$Shape_Le_1 <- NULL
   tmp$Shape_Area <- NULL
-  tmp$bohf_num <- as.integer(tmp$BoHF_num)
+  tmp$bohf_num <- as.integer(tmp$OBJECTID_1)
+  tmp$OBJECTID_1 <- NULL
   tmp$BoHF_num <- NULL
   dagkir2 <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   usethis::use_data(dagkir2, overwrite = TRUE)
