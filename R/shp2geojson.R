@@ -11,20 +11,19 @@
 shp2geojson <- function(shapefile = "eldre",
                         folder = ".",
                         geojson = NULL,
-                        reduce_size = TRUE,
-                        amount = 0.1) {
+                        reduce_size = TRUE) {
 
 
   # Read shapefile
-  original_map <- rgdal::readOGR(dsn = folder, layer = shapefile, verbose = FALSE)
-
-  # Convert to geojson
-  geojson_map <- geojsonio::geojson_json(original_map)
+  original_map <- sf::st_read(dsn = paste0(folder, "/", shapefile, ".shp"))
 
   # Reduce file size
   if (reduce_size) {
-    geojson_map <- rmapshaper::ms_simplify(geojson_map, keep = amount)
+    original_map <- sf::st_simplify(original_map, preserveTopology = TRUE, dTolerance = 1000)
   }
+
+  # Convert to geojson
+  geojson_map <- geojsonsf::sf_geojson(sf = original_map)
 
   # Save geojson file to disk
   if (is.null(geojson)) {
