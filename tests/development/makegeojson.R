@@ -13,6 +13,7 @@ convert_all_shp <- function(){
   tmp$area_num <- tmp$BoHF_ny2
   tmp$BoHF_ny2 <- NULL
   barn <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  barn <- sf::st_transform(barn, 32633)
   usethis::use_data(barn, overwrite = TRUE)
 
   name <- "kols"
@@ -27,6 +28,7 @@ convert_all_shp <- function(){
   tmp$Opptaksomr <- NULL
   sf::st_crs(tmp) <- 32633
   kols <- tmp
+  kols <- sf::st_transform(kols, 32633)
   usethis::use_data(kols, overwrite = TRUE)
 
   name <- "dagkir"
@@ -43,6 +45,7 @@ convert_all_shp <- function(){
   tmp$area_num <- tmp$BoHF_ny
   tmp$BoHF_ny <- NULL
   dagkir <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  dagkir <- sf::st_transform(dagkir, 32633)
   usethis::use_data(dagkir, overwrite = TRUE)
 
   name <- "eldre"
@@ -59,6 +62,7 @@ convert_all_shp <- function(){
   tmp$BoHF <- NULL
   sf::st_crs(tmp) <- 32633
   eldre <- tmp
+  eldre <- sf::st_transform(eldre, 32633)
   usethis::use_data(eldre, overwrite = TRUE)
 
   name <- "nyfodt"
@@ -78,6 +82,7 @@ convert_all_shp <- function(){
   tmp$area_num <- tmp$BoOmrID
   tmp$BoOmrID <- NULL
   nyfodt <- tmp
+  nyfodt <- sf::st_transform(nyfodt, 32633)
   usethis::use_data(nyfodt, overwrite = TRUE)
 
   name <- "dagkir2"
@@ -93,11 +98,14 @@ convert_all_shp <- function(){
   tmp$OBJECTID_1 <- NULL
   tmp$BoHF_num <- NULL
   dagkir2 <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  dagkir2 <- sf::st_transform(dagkir2, 32633)
   usethis::use_data(dagkir2, overwrite = TRUE)
 
   fodsel <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  fodsel <- sf::st_transform(fodsel, 32633)
   usethis::use_data(fodsel, overwrite = TRUE)
 
   gyn <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  gyn <- sf::st_transform(gyn, 32633)
   usethis::use_data(gyn, overwrite = TRUE)
 }
