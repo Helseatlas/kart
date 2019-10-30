@@ -4,7 +4,6 @@
 #' @param folder The folder where the shapefile is
 #' @param geojson The name of the geojson file to be created
 #' @param reduce_size Should the file size be reduced?
-#' @param amount How much to reduce the file size
 #'
 #' @export
 #'

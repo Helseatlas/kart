@@ -5,7 +5,7 @@
 \title{Function to convert a shapefile to geojson}
 \usage{
 shp2geojson(shapefile = "eldre", folder = ".", geojson = NULL,
-  reduce_size = TRUE, amount = 0.1)
+  reduce_size = TRUE)
 }
 \arguments{
 \item{shapefile}{The basename of shapefile to be converted to geojson}
@@ -15,8 +15,6 @@ shp2geojson(shapefile = "eldre", folder = ".", geojson = NULL,
 \item{geojson}{The name of the geojson file to be created}
 
 \item{reduce_size}{Should the file size be reduced?}
-
-\item{amount}{How much to reduce the file size}
 }
 \description{
 Function to convert a shapefile to geojson
