@@ -2,11 +2,11 @@ context("shp2geojson")
 
 test_that("shp2geojson with default", {
   expect_equal_to_reference(
-    shp2geojson(
+    suppressWarnings(shp2geojson(
       folder = "data",
       shapefile = "shapefile1",
       geojson = NULL
-    ),
+    )),
     "data/shp2geojson1.geojson"
   )
 })
@@ -24,10 +24,10 @@ test_that("shp2geojson with reduce_size = FALSE", {
 })
 
 test_that("shp2geojson with geojson != NULL", {
-  shp2geojson(
+  suppressWarnings(shp2geojson(
       folder = "data",
       shapefile = "shapefile1",
-      geojson = "tmp")
+      geojson = "tmp"))
 
   expect_equal_to_reference("tmp.geojson", "data/shp2geojson.geojson")
   file.remove("tmp.geojson")

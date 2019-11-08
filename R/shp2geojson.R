@@ -14,7 +14,7 @@ shp2geojson <- function(shapefile = "eldre",
 
 
   # Read shapefile
-  original_map <- sf::st_read(dsn = paste0(folder, "/", shapefile, ".shp"))
+  original_map <- sf::st_read(dsn = paste0(folder, "/", shapefile, ".shp"), quiet = TRUE)
 
   # Reduce file size
   if (reduce_size) {
