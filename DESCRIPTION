@@ -11,7 +11,7 @@ Description:
 License: file LICENSE
 Depends: R (>= 3.5.0)
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.0
 Encoding: UTF-8
 Imports:
   geojsonsf,

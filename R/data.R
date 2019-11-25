@@ -40,6 +40,13 @@ NULL
 #' @name dagkir2
 NULL
 
+#' Map from the orthopedic healthcare atlas 2012-2016
+#'
+#' @docType data
+#' @keywords map
+#' @name ortopedi
+NULL
+
 #' Map from the gynaecology healthcare atlas
 #'
 #' @docType data

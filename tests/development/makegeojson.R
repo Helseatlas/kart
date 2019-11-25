@@ -108,4 +108,20 @@ convert_all_shp <- function(){
   gyn <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   gyn <- sf::st_transform(gyn, 32633)
   usethis::use_data(gyn, overwrite = TRUE)
+
+  
+  name <- "ortopedi"
+  # geojson
+  kart::shp2geojson(shapefile = name, folder = "shp", geojson = paste0("geojson/", name))
+  # sf object
+  tmp <- sf::st_read(dsn = paste0("shp/", name, ".shp"))
+  tmp$area_num <- as.integer(tmp$boomr_O1al)
+  tmp$boomr_O1al <- NULL
+  tmp$area_name <- tmp$BoområdeK
+  tmp$BoområdeK <- NULL
+  tmp$BoområdeN <- NULL
+  ortopedi <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
+  ortopedi <- sf::st_transform(ortopedi, 32633)
+  usethis::use_data(ortopedi, overwrite = TRUE)
+
 }
