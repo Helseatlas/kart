@@ -122,6 +122,6 @@ convert_all_shp <- function(){
   tmp$BoområdeN <- NULL
   ortopedi <- sf::st_simplify(tmp, preserveTopology = TRUE, dTolerance = 1000)
   ortopedi <- sf::st_transform(ortopedi, 32633)
+  ortopedi$area_num <- c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19)
   usethis::use_data(ortopedi, overwrite = TRUE)
-
 }
