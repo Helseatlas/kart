@@ -1,30 +1,9 @@
 language: r
-sudo: false
 cache: packages
-warnings_are_errors: true
 
-matrix:
-  include:
-    - os: linux
-      dist: xenial
-      r: release
-      env: 
-        - DIST=xenial
-        - RUN_LINTR=true
-    - os: linux
-      dist: xenial
-      r: devel
-      env: 
-        - DIST=xenial
-        - RUN_LINTR=false
-    - os: windows
-      r: release
-      env: 
-        - DIST=windows
-        - RUN_LINTR=false
-  allow_failures:
-    - os: windows
-    - dist: trusty
+r:
+  - oldrel
+  - release
 
 env:
   global:
@@ -46,20 +25,10 @@ r_packages:
   - roxygen2
   - pkgdown
 
-script:
-  - R CMD build .
-  - R CMD check *tar.gz
-
-after_script:
-  - |
-    if [[ "$RUN_LINTR" = true ]]; then
-      R CMD INSTALL $PKG_TARBALL
-      Rscript -e 'lintr::lint_package()'
-    fi
-
 after_success:
   - |
-    if [[ "$RUN_LINTR" = true ]]; then
+    if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
+      Rscript -e 'lintr::lint_package()'
       Rscript -e 'covr::codecov()'
       Rscript -e 'roxygen2::roxygenise()'
       Rscript -e 'pkgdown::build_site()'
@@ -68,12 +37,11 @@ after_success:
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
   skip_cleanup: true                      # Don't remove files
-  github_token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
+  token: $GITHUB_TOKEN             # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
-  on: # Only deploy if master branch, xenial build and with latest released version of R.
+  on:
     branch: master
-    dist: xenial
-    r: release
+    condition: $TRAVIS_R_VERSION_STRING == "release"
 
 notifications:
   email:

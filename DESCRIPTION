@@ -16,6 +16,7 @@ Encoding: UTF-8
 Imports:
   geojsonsf,
   geojsonio,
+  rgdal,
   sf,
   sp
 Suggests: 
