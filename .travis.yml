@@ -25,10 +25,6 @@ r_packages:
   - roxygen2
   - pkgdown
 
-script:
-  - R CMD build .
-  - R CMD check *tar.gz
-
 after_success:
   - |
     if [[ "$TRAVIS_R_VERSION_STRING" == "release" ]] && [[ "$TRAVIS_EVENT_TYPE" == "push" ]]; then
