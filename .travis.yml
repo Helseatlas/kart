@@ -1,9 +1,9 @@
 language: r
 cache: packages
+os: linux
+dist: bionic
 
 r:
-  - 3.3
-  - 3.4
   - 3.5
   - 3.6
   - release
@@ -40,7 +40,7 @@ after_success:
 
 deploy:
   provider: pages                         # Specify the gh-pages deployment method
-  skip_cleanup: true                      # Don't remove files
+  cleanup: false                          # Don't remove files
   token: $GH_TOKEN                        # Set in travis-ci.org dashboard
   local_dir: docs                         # Deploy the docs folder
   on:
